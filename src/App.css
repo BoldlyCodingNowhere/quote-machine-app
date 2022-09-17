@@ -20,13 +20,13 @@ body {
   font-size: 1.5rem;
   height: 100vh;
 }
-#root {
-  background-color: red;
-  width: 100%;
-  height: 100%;
+
+.app-component {
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center;  
 }
 .app-container {
   width: 70%;
@@ -40,14 +40,15 @@ div#quote-box {
   max-width: 80%;
   min-width: 40%;
   text-align: center;
-  background: whitesmoke;
+  background: FloralWhite;
   border-radius: 20px;
   padding: 0.5rem;
-
+  box-shadow: 5px 10px 15px -3px rgba(0,0,0,0.5), 2px 4px 6px -2px rgba(0,0,0,0.8); 
+  animation: colorReset 4s linear
 }
 
 p#text {
-  color: red;
+  /*color: red;*/
   font-size: 2rem;
   padding: 1rem 0rem;
 }
@@ -61,9 +62,64 @@ p#text {
   font-size: 1rem;
   text-align: right;
   padding-right: 2rem;
+  margin-bottom: 2rem;
 
 }
 .buttons {
-  display: block;
-  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5rem 2rem;
+}
+
+a {
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 3px;  
+}
+
+.twitter-button {
+  width: 100%;
+  height: 100%;
+  font-size: 2.6rem;
+  transition: box-shadow 0.3s linear;
+  transition: transform 0.3s linear;
+}
+
+.twitter-button:hover {
+  transform: scale(1.1, 1.1);
+  box-shadow: 2px 2px 2px #293b5f;
+  cursor: pointer;
+}
+
+button {
+  height: 2.5rem;
+  border: none;
+  border-radius: 3px;
+  color: whitesmoke;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: .25rem;
+  padding: 0.5rem 1rem;
+  transition: box-shadow 0.5s linear;
+  transition: transform 0.5s linear;
+  cursor: pointer;
+
+}
+
+button:hover {
+  transform: scale(1.1, 1.1);
+  box-shadow: 4px 4px 4px #293b5f;
+  cursor: pointer;
+}
+
+@keyframes colorReset {
+  from {opacity: 1;}
+  50% {opacity: 0;}
+  to {opacity: 1;}
 }
