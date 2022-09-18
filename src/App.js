@@ -20,8 +20,7 @@ function App() {
     getQuote();
   }, []);
 
-  const getQuote = () => {
-    generateColor();
+  const getQuote = async () => {
     fetch("https://api.quotable.io/random")
       .then((response) => response.json())
       .then((data) => {
@@ -33,12 +32,22 @@ function App() {
       .catch((error) => {
         console.error("Error:", error);
       });
+    generateColor();
+  };
+
+  const tweetUrl = (quoteInfo) => {
+    let currentQuote = quoteInfo.text;
+    let currentAuthor = quoteInfo.author;
+    let url =
+      "https://twitter.com/intent/tweet?hashtags=quotes&text=" +
+      encodeURIComponent('"' + currentQuote + '"' + currentAuthor);
+    return url;
   };
 
   return (
     <div className="app-component" style={styles.back}>
       <div className="app-container">
-        <div id="quote-box">
+        <div id="quote-box" className="quote-box">
           <p id="text" style={styles.textCol}>
             <i className="quote-left">
               <FaQuoteLeft />
@@ -48,12 +57,12 @@ function App() {
               <FaQuoteRight />
             </i>
           </p>
-          <p id="author">{quoteInfo.author}</p>
+          <p id="author">- {quoteInfo.author}</p>
           <div className="buttons">
             <a
               id="tweet-quote"
               className="twitter-share-button"
-              href="https://twitter.com/intent/tweet"
+              href={tweetUrl(quoteInfo)}
               target="_blank"
             >
               <FaTwitterSquare
@@ -78,3 +87,5 @@ function App() {
 }
 
 export default App;
+
+/* */
