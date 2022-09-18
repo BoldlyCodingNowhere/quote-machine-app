@@ -20,6 +20,10 @@ function App() {
     getQuote();
   }, []);
 
+  useEffect(() => {
+    generateColor();
+  }, [quoteInfo]);
+
   const getQuote = async () => {
     fetch("https://api.quotable.io/random")
       .then((response) => response.json())
@@ -32,7 +36,6 @@ function App() {
       .catch((error) => {
         console.error("Error:", error);
       });
-    generateColor();
   };
 
   const tweetUrl = (quoteInfo) => {
@@ -64,6 +67,7 @@ function App() {
               className="twitter-share-button"
               href={tweetUrl(quoteInfo)}
               target="_blank"
+              rel="noreferrer"
             >
               <FaTwitterSquare
                 style={styles.textCol}
